@@ -1,3 +1,5 @@
 {
-  "rewrites": [{ "source": "/google", "destination": "https://google.com" }]
+  "rewrites": [
+    { "source": "/google", "destination": "https://google.com/yolo" }
+  ]
 }
