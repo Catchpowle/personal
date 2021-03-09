@@ -1,6 +1,6 @@
 ---
 title: Beware React.cloneElement
-date: "2020-02-21T22:12:03.284Z"
+date: "2021-03-08T22:12:03.284Z"
 description: "Why you might want to avoid this when creating your own libraries."
 ---
 
@@ -8,7 +8,7 @@ Recently I came across the following issue using a 3rd party library at work.
 
 Below is an example component API, I've made the components and most of the prop names generic so we can focus on the issue.
 
-```js
+```jsx
 <Parent space="sm">
   <Child propOne={valueOne} propTwo={valueOne} propThree={valueThree}>
     Content
@@ -26,7 +26,7 @@ The library exposes a parent component that can set the space between it's child
 
 This 3rd party library has to cover many use cases and is therefore very flexibile in how it can configured. Within our company's component library we don't want to expose this flexibility as we are developing within the constraints of our design system. We want to wrap the child and only the allow the dynamic configuration of certain properties.
 
-```js
+```jsx
 function WrappedChild({ propOne, propTwo, children }) {
   propThree = "valueThree"
 
@@ -40,7 +40,7 @@ function WrappedChild({ propOne, propTwo, children }) {
 
 We know within our component library we always want propThree of the third party component to be set to a certain value and so our WrappedChild component does this for us ensuring we don't have to worry about a developer causing issues by misconfguring this.
 
-```js
+```jsx
 <Parent space="sm">
   <WrappedChild propOne={valueOne} propTwo={valueOne}>
     Content
@@ -58,7 +58,7 @@ Unfortunately when we attempt to use our components as shown above we find to ou
 
 Well if we look into the source code for the third party library we can see that they are doing the following:
 
-```js
+```jsx
 function Parent({ space, children }) {
   return React.Children.map(children, child => {
     React.cloneElement(child, { space })
@@ -72,7 +72,7 @@ One fix would be to just pass the space prop through or simply spread all remain
 
 Another approach would be to use React's Context API as follows:
 
-```js
+```jsx
 const ChildContext = createContext({ space: "none" })
 
 function Child({ propOne, propTwo, propThree, children }) {

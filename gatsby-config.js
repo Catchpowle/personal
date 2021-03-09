@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `A blog by Jon Catchpowle`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Jonathan Catchpowle`,
+      summary: `An attempt at learning in public.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
+    description: `Personal blog of Jonathan Catchpowle.`,
+    siteUrl: `https://catchpowle.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `catchpowle`,
     },
   },
   plugins: [
